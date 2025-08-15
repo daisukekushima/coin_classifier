@@ -1,25 +1,7 @@
-# --- 機械学習用 ---
-torch
-torchvision
-ultralytics        
-albumentations             
-scikit-learn               
-
-
-# --- 画像処理 用 ---
-numpy
+streamlit>=1.25.0
+streamlit-webrtc
+streamlit_autorefresh
+ultralytics
+av
 opencv-python
-Pillow
-
-
-# --- データ分析 用 ---
-matplotlib
-
-
-# --- streamlit 用 ---
-streamlit
-streamlit-webrtc           
-
-
-# --- その他 ---
-tqdm                       
+numpy
