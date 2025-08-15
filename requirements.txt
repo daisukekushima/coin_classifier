@@ -1,0 +1,7 @@
+streamlit>=1.25.0
+streamlit-webrtc
+streamlit_autorefresh
+ultralytics
+av
+opencv-python
+numpy
