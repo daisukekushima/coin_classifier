@@ -1,1 +1,4 @@
 .env_coin_classifier
+__pycache__
+datasets/train.cache
+datasets/val.cache
