@@ -6,15 +6,14 @@ import numpy as np
 
 # --- 設定 ---
 ROOT_DIR = Path(__file__).parent
-IMG_PATH = ROOT_DIR / "datasets/images/val/1000023526.jpg"
 
-#IMG_PATH = ROOT_DIR / "datasets/images/train/1000023525.jpg"
+#データセットに追加したい画像のパスを指定してください
+IMG_PATH = ROOT_DIR / "datasets/images/val/IMG_2025-08-18-20-06-16-728_2.jpg"
 
-MODEL_WEIGHTS = ROOT_DIR / "finetuning_result/train/weights/best.pt"
-FORCE_CLASS_ID = None         # Noneなら推論結果のクラスを使用、整数なら強制
+MODEL_WEIGHTS = ROOT_DIR / "finetuning_result/yolo11n/best.pt"
 
-MODEL_WEIGHTS = "datasets/yolov8n.pt" 
-#MODEL_WEIGHTS = "datasets/yolov8x.pt" 
+
+
 
 # --- 画像読み込み ---
 img = cv2.imread(str(IMG_PATH))
@@ -24,10 +23,10 @@ img_h, img_w = img.shape[:2]
 
 # --- モデル読み込み＆推論 ---
 model = YOLO(MODEL_WEIGHTS)
-results = model.predict(source=str(IMG_PATH), imgsz=640, conf=0.015, verbose=False)
+results = model.predict(source=str(IMG_PATH), imgsz=640, conf=0.4, verbose=False)
 
 # --- アノテーション作成と描画 ---
-lines = []
+annotations = []
 total_boxes = 0
 annotated_img = img.copy()
 
@@ -47,8 +46,8 @@ for res in results:
         width = (x2 - x1) / img_w
         height = (y2 - y1) / img_h
 
-        class_id = int(cls_id) if FORCE_CLASS_ID is None else int(FORCE_CLASS_ID)
-        lines.append(f"{class_id} {x_center:.6f} {y_center:.6f} {width:.6f} {height:.6f}")
+        class_id = int(cls_id) 
+        annotations.append(f"{class_id} {x_center:.6f} {y_center:.6f} {width:.6f} {height:.6f}")
         total_boxes += 1
 
         # --- 描画 ---
@@ -59,7 +58,7 @@ for res in results:
 
 # --- アノテーションtxt保存 ---
 txt_path = IMG_PATH.with_suffix('.txt')
-txt_path.write_text("\n".join(lines), encoding='utf-8')
+txt_path.write_text("\n".join(annotations), encoding='utf-8')
 
 # --- 描画結果保存 ---
 annotated_path = IMG_PATH.with_name(IMG_PATH.stem + '_annotated.jpg')
