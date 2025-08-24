@@ -8,7 +8,10 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
 
 プロトタイプ段階では、色の特徴が似ている**1円玉**と**100円玉**を識別対象とすることで、機械学習のベンチマークを行ってます。
 
-要件定義と仕様はwikiに記載しています。
+要件定義と仕様は以下のリポジトリ内wikiに記載しています。
+[要件定義書](https://github.com/daisukekushima/coin_classifier/wiki/01_%E8%A6%81%E4%BB%B6%E5%AE%9A%E7%BE%A9%E6%9B%B8)
+[仕様書](https://github.com/daisukekushima/coin_classifier/wiki/02_%E4%BB%95%E6%A7%98%E6%9B%B8)  
+
 
 ## 2. 主な機能
 
@@ -51,11 +54,15 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
 
 ### 5.1. 前提条件
 - **Python 3.11** がインストールされていること。(`setup_env.bat` は `py -3.11` コマンドを使用します)
+- **git**がインストールされていること。(リポジトリのダウンロードに git clone コマンドを使用します。)
+- **Windows**環境であること(仮想環境の構築に .`setup_env.bat` を使用します。)
+    - 他のOS(**Linux / macOS**)の場合、手動で仮想環境を作成してください。
 
 ### 5.2. 手順
 1.  **リポジトリのクローン**:
+　　現在開発中のブランチissue_004を指定してリポジトリをクローンします。
     ```bash
-    git clone <repository_url>
+    git clone -b issue_004 https://github.com/daisukekushima/coin_classifier/tree/issue_004
     cd coin_classifier
     ```
 
