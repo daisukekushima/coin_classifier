@@ -29,23 +29,30 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
 ## 4. ディレクトリ構成
 
 ```
+├── .gitattributes                     # Gitの属性設定ファイル
+├── .gitignore                         # Gitの追跡対象外ファイルを指定
+├── .dockerignore                      # Dockerビルド時に除外するファイルを指定
+├── Dockerfile                         # Dockerイメージをビルドするための設定ファイル
+├── docker-compose.yml                 # Dockerコンテナの構成を定義するファイル
 ├── app.py                             # 硬貨認識のコアロジック
 ├── streamlit_run.py                   # Streamlitアプリケーションのメインスクリプト
-├── finetuning.py                      # YOLOv11モデルのファインチューニング用スクリプト
+├── finetuning.py                      # YOLOモデルのファインチューニング用スクリプト
 ├── annotation_assist.py               # アノテーション生成の補助ツール
-├── setup_env.bat                      # 仮想環境のセットアップ用バッチファイル
-├── streamlit_run.bat                  # Streamlitアプリの起動用バッチファイル
+├── setup_env.bat                      # (Windows) 仮想環境のセットアップ用バッチファイル
+├── streamlit_run.bat                  # (Windows) Streamlitアプリの起動用バッチファイル
 ├── requirements.txt                   # 依存ライブラリ一覧
-├── datasets/                          # データセット
+├── readme_docker.md                   # Docker環境での実行手順書
+├── README.md                          # このファイル
+├── datasets/
 │   ├── data.yaml                      # データセットの構成ファイル (クラス名、パス定義)
 │   ├── images/                        # 画像ファイル (train/val)
 │   └── labels/                        # アノテーションファイル (train/val)
 ├── finetuning_result/                 # ファインチューニング結果の出力先
 │   └── yolo11n/
 │       ├── best.pt                    # 最も性能が良かったモデルの重みファイル
-│       ├── best_config_…              # 最も性能が良かったモデルのオーグメンテーションの条件を表したファイル
-│       └── augmentation_summary.csv   # データオーグメンテーション全組み合わせの評価結果
-└── classifier_result/                 # アプリケーションで保存した認識結果の出力先
+│       └── ...                        # その他、学習過程で生成されるファイル
+├── docments/                          # README用の画像などを格納
+└── classifier_result/                 # (実行時に自動生成) アプリで保存した認識結果の出力先
 ```
 
 ## 5. セットアップ手順
@@ -55,7 +62,11 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
 - **Python 3.11** がインストールされていること。（`setup_env.bat` は `py -3.11` コマンドを使用します）
 - **git**がインストールされていること。（リポジトリのダウンロードに git clone コマンドを使用します。）
 - **Windows**環境であること（仮想環境の構築に `setup_env.bat` を使用します。）
-  - 他のOS（**Linux / macOS**）の場合、手動で仮想環境を作成してください。
+  - 他のOS（**Linux / macOS**）の場合、**Docker**等で仮想環境を作成してください。
+
+
+**Docker**環境での実行手順は [readme_docker.md](./readme_docker.md) を参照してください。
+（本READMEの **5.2. 手順**  ～ **アプリケーションの起動** に対応しています）
 
 ### 5.2. 手順
 

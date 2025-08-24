@@ -68,24 +68,24 @@ if __name__ == "__main__":
 
             # 学習
             model.train(
-                data=str(DATA_YAML_PATH),
-                lr0=0.001,
-                epochs=50,
-                batch=4,
-                imgsz=640,
-                hsv_h=0.015,
-                hsv_s=0.7,
-                hsv_v=0.4,
-                mosaic=config["mosaic"],
-                degrees=config["degrees"],
-                translate=config["translate"],
-                perspective=config["perspective"],
-                scale=config["scale"],
-                project=str(project_path),
-                save=True,
-                exist_ok=True,
-                verbose=False,
-                workers=0
+                data=str(DATA_YAML_PATH),           # 学習データのパス (YAMLファイル)
+                lr0=0.001,                          # 初期学習率(一定)
+                epochs=50,                          # エポック数
+                batch=4,                            # バッチサイズ 
+                imgsz=640,                          # 入力画像のサイズ (縦横ピクセル)
+                hsv_h=0.015,                        # 色相の範囲(データ拡張)
+                hsv_s=0.7,                          # 彩度の範囲(データ拡張)
+                hsv_v=0.4,                          # 明度の範囲(データ拡張)
+                mosaic=config["mosaic"],            # モザイク拡張の範囲(データ拡張)
+                degrees=config["degrees"],          # 回転角度の範囲(データ拡張)
+                translate=config["translate"],      # 平行移動の範囲(データ拡張)
+                perspective=config["perspective"],  # 射影変換の範囲(データ拡張)
+                scale=config["scale"],              # スケール変化の範囲(データ拡張)
+                project=str(project_path),          # 学習結果の保存先
+                save=True,                          # 学習中に最良のモデルを逐次保存
+                exist_ok=True,                      # 保存先ディレクトリが存在しても上書きする
+                verbose=False,                      # 学習ログのターミナル上の詳細出力の有無
+                workers=0                           # データローダーで使用するワーカー数 (0はメインプロセスのみ)
             )
 
             metrics = model.val(data=str(DATA_YAML_PATH))
@@ -127,6 +127,8 @@ if __name__ == "__main__":
             gc.collect()
 
         # --- 結果のCSV保存 --- 
+        # tp_harmonicは独自の指標で、各クラスの真陽性率の調和平均を取っている。
+        # これは、各クラスの真陽性率のバランスを重視する指標である。
         df = pd.DataFrame([
             {
                 "mosaic": r["config"]["mosaic"],
