@@ -62,7 +62,7 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
 1. **リポジトリのクローン**:  
    現在開発中のブランチissue_004を指定してリポジトリをクローンします。
    ```bash
-   git clone -b issue_004 https://github.com/daisukekushima/coin_classifier/tree/issue_004
+   git clone -b issue_004 https://github.com/daisukekushima/coin_classifier.git
    cd coin_classifier
    ```
 
