@@ -51,7 +51,7 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
 │   └── yolo11n/
 │       ├── best.pt                    # 最も性能が良かったモデルの重みファイル
 │       └── ...                        # その他、学習過程で生成されるファイル
-├── docments/                          # README用の画像などを格納
+├── documents/                          # README用の画像などを格納
 └── classifier_result/                 # (実行時に自動生成) アプリで保存した認識結果の出力先
 ```
 
@@ -108,13 +108,13 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
    - 起動後、ブラウザでアプリが開きます。下図赤枠のようにカメラ許可のポップアップが表示される場合は、カメラへのアクセスを許可してください。
 
    
-   <img src="docments\images\allow_camera.png" width="400">
+   <img src="documents\images\allow_camera.png" width="400">
 
 
    - `SELECT DEVICE` プルダウンから使用するカメラを選択し、`START` ボタンを押すと認識が開始されます。
 
 
-   <img src="docments/images/select_camera.png" alt="カメラ選択画面" width="400">
+   <img src="documents/images/select_camera.png" alt="カメラ選択画面" width="400">
 
 
 3. **認識と結果表示**
@@ -123,7 +123,7 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
    - `🔄 再認識` ボタンを押すと、再度カメラが起動し、認識を再開できます。
 
 
-   <img src="docments/images/recognized.png" alt="認識結果画面" width="400">
+   <img src="documents/images/recognized.png" alt="認識結果画面" width="400">
 
 
 4. **結果の保存 (任意)**
@@ -132,7 +132,7 @@ PCのWebカメラから硬貨を認識するために、機械学習モデル **
    - `🔽 データ保存` ボタンを押すと、認識時の画像とYOLO形式のアノテーションデータが `classifier_result/` ディレクトリに保存されます。
 
    
-    <img src="docments/images/result.png" alt="保存されたデータ" width="400">
+    <img src="documents/images/result.png" alt="保存されたデータ" width="400">
    
    - 保存されたデータは、後述のデータセット拡充に利用できます。
    - 保存されるファイル形式は、後述する**3. 結果確認と修正** で生成されるものと同じ形式です。
